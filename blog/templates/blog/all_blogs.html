@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Justin Gery</title>
+    <title>Da Blog</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
 
@@ -43,45 +43,31 @@
               <div class="navbar-nav ml-auto">
                 <a class="nav-item nav-link" href="https://www.instagram.com/the_laughing_elf/">Instagram</a>
                 <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
-                <a class="nav-item nav-link" href="{% url 'all_blogs' %}">Blog</a>
+                <a class="nav-item nav-link active" href="{% url 'all_blogs' %}">Blog</a>
               </div>
             </div>
           </nav>
 </header>
 
 <main role="main">
-
-  <section class="jumbotron text-center">
     <div class="container">
-      <h1 class="jumbotron-heading">Hi, Im Justin</h1>
-      <p class="lead text-muted">Hey this is a website that i am building using DJango. I like to cool stuffs like this. Learning is fun.</p>
-      <p>
-        <a href="mailto:jaygery90@gmail.com" class="btn btn-primary my-2">Email Me</a>
-      </p>
-      <img src="{% static 'mad.jpg' %}" height=300/>
-    </div>
-  </section>
+    
+    <h1 class="text-center pt-3">Welcome to the Blog</h1>
+    <br/>
+    <br/>
+    <h2>Latest Post</h2>
+    <hr />
 
-  <div class="album py-5 bg-light">
-    <div class="container">
+        {% for blog in bloggy.all %}
+        <a href="{% url 'detail' blog.id %}" ><h5>{{ blog.title }}</h5></a>
+        <p>{{ blog.pub_date_pretty1                                               }}</p>
+        <p>{{ blog.summary }}</p>
+        <img class="img.fluid" src= {{ blog.image.url }} />
+        <br/>
+        <br/>
 
-      <div class="row">
-
-        {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{ job.image.url }}" />
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-            </div>
-          </div>
-        </div>
         {% endfor %}
-
-      </div>
     </div>
-  </div>
-
 </main>
 
 <footer class="text-muted">
